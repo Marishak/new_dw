@@ -10,6 +10,6 @@ public class MainController {
 
     @GetMapping
     public String greeting() {
-        return "";
+        return "mainStr";
     }
 }
