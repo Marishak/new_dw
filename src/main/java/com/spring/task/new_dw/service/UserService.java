@@ -26,31 +26,31 @@ public class UserService {
     }
 
     public void updateUser(User userForUpdate) {
-        String login = userForUpdate.getLogin();
-        User user = userRepository.findByLogin(login);
-        if (user == null) {
-            throw new UserNotFoundException("User with login: " + login + " not found");
-        }
-        // нет проверки на пустое и нул, так как
-        // в форме-заполнения на сайте заранее нет возможности передать пустое знаечение
-        // изменять можно - логин, пароль, Фамилию, Имя, Отчество, пол
-        // надо реализовать провекру на изменение логина, чтобы такого же не было в базе
-        user.setLogin(userForUpdate.getLogin());
-        user.setPassword(userForUpdate.getPassword());
-        user.setLastName(userForUpdate.getLastName());
-        user.setFirstName(userForUpdate.getFirstName());
-        user.setPatronymic(userForUpdate.getPatronymic());
-        user.setGender(userForUpdate.getGender());
-
-        userRepository.save(userForUpdate);
+//        String login = userForUpdate.getLogin();
+//        User user = userRepository.findByLogin(login);
+//        if (user == null) {
+//            throw new UserNotFoundException("User with login: " + login + " not found");
+//        }
+//        // нет проверки на пустое и нул, так как
+//        // в форме-заполнения на сайте заранее нет возможности передать пустое знаечение
+//        // изменять можно - логин, пароль, Фамилию, Имя, Отчество, пол
+//        // надо реализовать провекру на изменение логина, чтобы такого же не было в базе
+//        user.setLogin(userForUpdate.getLogin());
+//        user.setPassword(userForUpdate.getPassword());
+//        user.setLastName(userForUpdate.getLastName());
+//        user.setFirstName(userForUpdate.getFirstName());
+//        user.setPatronymic(userForUpdate.getPatronymic());
+//        user.setGender(userForUpdate.getGender());
+//
+//        userRepository.save(userForUpdate);
     }
 
     public void deleteUser(User user) {
-
-        if (userRepository.findByLogin(user.getLogin()) == null) {
-            throw new UserNotFoundException("User with login: " + user.getLogin() + " not found");
-        }
-
-        userRepository.delete(user);
+//
+//        if (userRepository.findByLogin(user.getLogin()) == null) {
+//            throw new UserNotFoundException("User with login: " + user.getLogin() + " not found");
+//        }
+//
+//        userRepository.delete(user);
     }
 }

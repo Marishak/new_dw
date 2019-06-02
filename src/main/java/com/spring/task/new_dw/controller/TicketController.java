@@ -1,15 +1,15 @@
 package com.spring.task.new_dw.controller;
 
 import com.spring.task.new_dw.entity.Ticket;
+import com.spring.task.new_dw.entity.User;
 import com.spring.task.new_dw.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+//import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/ticket")
 public class TicketController {
 
@@ -26,28 +26,19 @@ public class TicketController {
     }
 
     @GetMapping("/{id}")
-    public Ticket getTicket(@PathVariable Long id) {
-        return ticketService.getTicket(id);
-    }
-
-    @GetMapping("/bydate")
-    public List<Ticket> getTicketByDate(LocalDate date) {
-        return ticketService.getTicketsByDate(date);
-    }
-
-    @GetMapping("/purchased")
-    public List<Ticket> getPurchasedTickets() {
-        return ticketService.getPurchasedTickets();
+    public Ticket getTicketById(@PathVariable Long id) {
+        return ticketService.getTicketById(id);
     }
 
     @PostMapping
-    public void addTicket(@RequestBody Ticket ticket) {
+    public void newTicket(@RequestBody Ticket ticket /*, @AuthenticationPrincipal User owner*/) {
+//        ticket.setOwner(owner);
         ticketService.addTicket(ticket);
     }
 
-    @DeleteMapping
-    public void deleteTicket(@RequestBody Ticket ticket) {
-        ticketService.deleteTicket(ticket);
+    @DeleteMapping("/{id}")
+    public void deleteTicket(@PathVariable Long id) {
+        ticketService.deleteTicketById(id);
     }
 
 }

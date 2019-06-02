@@ -5,7 +5,6 @@ import com.spring.task.new_dw.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -17,7 +16,7 @@ public class TicketService {
         this.ticketRepository = ticketRepository;
     }
 
-    public Ticket getTicket(Long id) {
+    public Ticket getTicketById(Long id) {
         return ticketRepository.findById(id).get();
     }
 
@@ -25,19 +24,11 @@ public class TicketService {
         return ticketRepository.findAll();
     }
 
-    public List<Ticket> getTicketsByDate(LocalDate date) {
-        return ticketRepository.findAllByDateTicket(date);
-    }
-
-    public List<Ticket> getPurchasedTickets() {
-        return ticketRepository.findAllTicketsByOwnerNotNull();
-    }
-
     public void addTicket(Ticket ticket) {
         ticketRepository.save(ticket);
     }
 
-    public void deleteTicket(Ticket ticket) {
-        ticketRepository.delete(ticket);
+    public void deleteTicketById(Long id) {
+        ticketRepository.deleteById(id);
     }
 }

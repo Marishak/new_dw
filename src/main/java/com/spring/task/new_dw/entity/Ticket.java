@@ -3,13 +3,12 @@ package com.spring.task.new_dw.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-@EqualsAndHashCode
+
 @Entity
 @Table
 public class Ticket {
@@ -17,12 +16,13 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
 
-//    @Temporal(TemporalType.DATE)
-    private LocalDate dateTicket;
+    @ManyToOne
+    @JoinColumn(name = "ticketType_id")
+    private TicketType ticketType;
 
-    private Double price;
+
 }
