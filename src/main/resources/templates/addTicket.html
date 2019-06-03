@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<form action="#" th:action="@{/ticket/add}" method="post">
+    <p>Date: <input type="date" name="ticketDate" required/></p>
+    <p>Price: <input type="number" step="0.01" name="price" required/></p>
+    <p>Client:
+        <select name="ownerId" >
+            <option value="">Choose client</option>
+            <option th:each="user : ${users}"
+                    th:value="${user.id}"
+                    th:text="${user.print()}"></option>
+        </select></p>
+    <input name="submit" type="submit" value="Add ticket" />
+</form><br>
+
+<form action="/ticket/all" method="get">
+    <input type="submit" value="Back" />
+</form>
+
+</body>
+</html>

@@ -1,8 +1,10 @@
 package com.spring.task.new_dw.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -20,9 +22,14 @@ public class Ticket {
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    @ManyToOne
-    @JoinColumn(name = "ticketType_id")
-    private TicketType ticketType;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate ticketDate;
+
+    private Double price;
+
+    public String print () {
+        return String.format("%s %.2f", ticketDate.toString(), price);
+    }
 
 }

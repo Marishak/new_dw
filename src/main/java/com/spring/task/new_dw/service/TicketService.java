@@ -10,10 +10,12 @@ import java.util.List;
 @Service
 public class TicketService {
     private final TicketRepository ticketRepository;
+    private final UserService userService;
 
     @Autowired
-    public TicketService(TicketRepository ticketRepository) {
+    public TicketService(TicketRepository ticketRepository, UserService userService) {
         this.ticketRepository = ticketRepository;
+        this.userService = userService;
     }
 
     public Ticket getTicketById(Long id) {
@@ -25,6 +27,11 @@ public class TicketService {
     }
 
     public void addTicket(Ticket ticket) {
+        ticketRepository.save(ticket);
+    }
+
+    public void addTicket(Ticket ticket, Long ownerId) {
+        ticket.setOwner(userService.getUserById(ownerId));
         ticketRepository.save(ticket);
     }
 

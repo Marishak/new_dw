@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "tickets")
 @NoArgsConstructor
 @EqualsAndHashCode
 
@@ -49,5 +49,13 @@ public class User {
     private String patronymic;
 
     private Gender gender;
+
+    public String printWithId () {
+        return String.format("%d %s %s %s", id, lastName, firstName, patronymic);
+    }
+
+    public String print () {
+        return String.format("%s %s %s", lastName, firstName, patronymic);
+    }
 
 }

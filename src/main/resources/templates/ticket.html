@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<h4>TICKETS:</h4>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Price</th>
+        <th>Owner</th>
+    </tr>
+    <tr th:each="ticket: ${tickets}">
+        <td th:text="${ticket.getTicketDate().toString()}"></td>
+        <td th:text="${ticket.getPrice().toString()}"></td>
+        <td th:text="${ticket.getOwner().print()}"></td>
+        <td><form action="#" th:action="@{'/ticket/{id}'(id=${ticket.id})}" th:method="delete" >
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit">Delete</button>
+        </form></td>
+    </tr>
+</table>
+
+<form action="/ticket/add" method="get">
+    <input type="submit" value="Add ticket" />
+</form><br>
+
+<form action="/" method="get">
+    <input type="submit" value="Main" />
+</form>
+
+</body>
+</html>
