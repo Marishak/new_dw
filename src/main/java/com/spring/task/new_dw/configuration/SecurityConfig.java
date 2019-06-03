@@ -11,11 +11,18 @@
 //
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
-//
-//        http.authorizeRequests()
-//                .anyRequest()
+//           http
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/*", "/user/registration").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
 //                .permitAll()
-//                .and().csrf().disable();
+//                .and()
+//                .logout()
+//                .permitAll();
 //    }
 //
 //}

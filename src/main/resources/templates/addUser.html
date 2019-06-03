@@ -7,9 +7,9 @@
 <body>
 
 <h3>Add client</h3>
-<form action="#" th:action="@{/user}" th:object="${user}" method="post">
-    <p>Login: <input type="text" th:field="*{login}" required/></p>
-    <p>Password: <input type="text" th:field="*{password}" required/></p>
+<form action="#" th:action="@{/user/registration}" th:object="${user}" method="post">
+    <p>Login: <input type="text" name="username" th:field="*{username}" required/></p>
+    <p>Password: <input type="password" name="password" th:field="*{password}" required/></p>
     <p>First name: <input type="text" th:field="*{firstName}" required/></p>
     <p>Last name: <input type="text" th:field="*{lastName}" required/></p>
     <p>Patronymic: <input type="text" th:field="*{patronymic}" required/></p>

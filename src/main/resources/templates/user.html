@@ -15,7 +15,7 @@
     </tr>
     <tr th:each="user: ${users}">
         <td th:text="${user.print()}"></td>
-        <td th:text="${user.getLogin()}"></td>
+        <td th:text="${user.getUsername()}"></td>
         <td th:text="${user.getPassword()}"></td>
         <td><form action="#" th:action="@{'/user/{id}'(id=${user.id})}" th:method="get">
             <input type="hidden" name="_method" value="get" />
@@ -29,10 +29,10 @@
 </table>
 <br>
 
-<form action="/user/add" method="get">
+<form action="/user/registration" method="get">
     <input type="submit" value="Add client" />
 </form><br>
-<form action="/" method="get">
+<form action="/main" method="get">
     <input type="submit" value="Main" />
 </form>
 

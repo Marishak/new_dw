@@ -35,13 +35,13 @@ public class UserController {
         return "profile";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/registration")
     public String getUser(Model model) {
         model.addAttribute("user", new User());
         return "addUser";
     }
 
-    @PostMapping
+    @PostMapping("/registration")
     public String addUser(@ModelAttribute User user) {
         userService.addUser(user);
         return "redirect:/user";

@@ -31,11 +31,17 @@ public class UserService {
     }
 
     public void addUser(User user) {
-        String login = user.getLogin();
-        if (userRepository.findByLogin(login).isPresent()) {
+        String login = user.getUsername();
+        if (userRepository.findByUsername(login) != null) {
             throw new BadRequestException("Login with name " + login + " already exist");
         }
-        user.setRoles(Collections.singleton(Role.CLIENT));
+        //only for test
+        if(login.equals("admin")) {
+            user.setRoles(Collections.singleton(Role.ADMIN));
+        } else {
+            user.setRoles(Collections.singleton(Role.USER));
+        }
+
         userRepository.save(user);
     }
 
@@ -43,17 +49,13 @@ public class UserService {
         User userFromDB = userRepository.findById(updatedUser.getId())
                 .orElseThrow(() -> new UserNotFoundException("User with id : " + updatedUser.getId() + " doesn't exist"));
 
-//         нет проверки на пустое и нул, так как
-//         в форме-заполнения на сайте заранее нет возможности передать пустое знаечение
-//         изменять можно - логин, пароль, Фамилию, Имя, Отчество, пол
-//         надо реализовать провекру на изменение логина, чтобы такого же не было в базе
-        String login = updatedUser.getLogin();
-        if (login != null && !login.isEmpty() && !login.equals(userFromDB.getLogin())) {
-            if (userRepository.findByLogin(login).isPresent()) {
+        String login = updatedUser.getUsername();
+        if (login != null && !login.isEmpty() && !login.equals(userFromDB.getUsername())) {
+            if (userRepository.findByUsername(login) != null) {
                 throw new BadRequestException("Login with name " + login + " already exist");
             }
 
-            userFromDB.setLogin(login);
+            userFromDB.setUsername(login);
         }
         if (updatedUser.getPassword() != null) {
             userFromDB.setPassword(updatedUser.getPassword());

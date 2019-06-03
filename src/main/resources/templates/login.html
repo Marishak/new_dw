@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
-LOGIN!!!
+
+<h1>Welcome!</h1>
+<h3>Please register or login with your username!</h3>
+
+<h1>Enter your login and password</h1>
+<form th:action="@{/login}" method="post">
+    <div><label> User Name : <input type="text" name="username"/> </label></div><br>
+    <div><label> Password: <input type="password" name="password"/> </label></div><br>
+    <div><input type="submit" value="Login"/></div>
+</form>
+
+<form action="/user/registration" method="GET">
+    <input type="submit" value="Registration" />
+</form><br>
+
+<form action="/logout" method="GET">
+    <input type="submit" value="Logout" />
+</form><br>
+
 </body>
 </html>

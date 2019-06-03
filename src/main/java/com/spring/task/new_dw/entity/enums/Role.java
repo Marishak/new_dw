@@ -1,21 +1,12 @@
 package com.spring.task.new_dw.entity.enums;
 
-public enum Role {
-    ADMIN ("admin"),
-    CLIENT ("client");
+//import org.springframework.security.core.GrantedAuthority;
 
-    private String title;
+public enum Role /*implements GrantedAuthority*/ {
+    USER,ADMIN;
 
-    Role(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String toString() {
-        return "Role: " + title;
-    }
+//    @Override
+//    public String getAuthority() {
+//        return name();
+//    }
 }
