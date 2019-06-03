@@ -1,6 +1,7 @@
 package com.spring.task.new_dw.service;
 
 import com.spring.task.new_dw.entity.User;
+import com.spring.task.new_dw.entity.enums.Role;
 import com.spring.task.new_dw.exception.BadRequestException;
 import com.spring.task.new_dw.exception.UserNotFoundException;
 import com.spring.task.new_dw.repository.UserRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -33,6 +35,7 @@ public class UserService {
         if (userRepository.findByLogin(login).isPresent()) {
             throw new BadRequestException("Login with name " + login + " already exist");
         }
+        user.setRoles(Collections.singleton(Role.CLIENT));
         userRepository.save(user);
     }
 

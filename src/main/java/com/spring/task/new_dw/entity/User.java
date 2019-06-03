@@ -3,8 +3,10 @@ package com.spring.task.new_dw.entity;
 import com.spring.task.new_dw.entity.enums.Gender;
 import com.spring.task.new_dw.entity.enums.Role;
 import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -34,7 +36,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "owner")
-    private Set<Ticket> tickets;
+    private List<Ticket> tickets;
 
     @NotNull
     @Column(nullable = false)

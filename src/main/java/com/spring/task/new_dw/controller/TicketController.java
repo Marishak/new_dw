@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/ticket")
@@ -26,14 +27,23 @@ public class TicketController {
     @GetMapping("/all")
     public String getAllTickets(Model model) {
         model.addAttribute("tickets", ticketService.getAllTickets());
+        model.addAttribute("users", userService.getAllUser());
         return "ticket";
     }
 
     @GetMapping("/add")
     public String buyTicket(Model model) {
         model.addAttribute("users", userService.getAllUser());
-
         return "addTicket";
+    }
+
+
+    @GetMapping("/user")
+    public String getAllTicketsByUser(@RequestParam Long id, Model model) {
+        List<Ticket> tickets = ticketService.getAllTicketsByOwnerId(id);
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("users", userService.getAllUser());
+        return "ticket";
     }
 
     @PostMapping("/add")

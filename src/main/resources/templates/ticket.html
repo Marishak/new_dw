@@ -7,6 +7,21 @@
 <body>
 
 <h4>TICKETS:</h4>
+
+<form action="#" th:action="@{/ticket/user}" method="get">
+    <select name="id" >
+        <option value="">Choose client</option>
+        <option th:each="user : ${users}"
+                th:value="${user.id}"
+                th:text="${user.print()}"></option>
+    </select>
+    <input name="submit" type="submit" value="Client tickets" />
+</form><br>
+
+<form action="/ticket/all" method="get">
+    <input type="submit" value="Reset" />
+</form><br>
+
 <table>
     <tr>
         <th>Date</th>

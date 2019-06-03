@@ -18,6 +18,10 @@ public class TicketService {
         this.userService = userService;
     }
 
+    public List<Ticket> getAllTicketsByOwnerId(Long id) {
+        return ticketRepository.findAllByOwner_Id(id);
+    }
+
     public Ticket getTicketById(Long id) {
         return ticketRepository.findById(id).get();
     }
