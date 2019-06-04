@@ -22,7 +22,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.LAZY)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
@@ -35,7 +35,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE)
     private List<Ticket> tickets;
 
     @NotNull
@@ -49,6 +49,8 @@ public class User {
     @NotNull
     @Column(nullable = false)
     private String patronymic;
+
+    private boolean active;
 
     private Gender gender;
 

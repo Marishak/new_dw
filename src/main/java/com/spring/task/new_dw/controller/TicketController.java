@@ -63,7 +63,6 @@ public class TicketController {
     @DeleteMapping("/{id}")
     public String deleteTicket(@PathVariable Long id) {
         ticketService.deleteTicketById(id);
-
         return "redirect:/ticket/all";
     }
 

@@ -35,13 +35,8 @@ public class UserService {
         if (userRepository.findByUsername(login) != null) {
             throw new BadRequestException("Login with name " + login + " already exist");
         }
-        //only for test
-        if(login.equals("admin")) {
-            user.setRoles(Collections.singleton(Role.ADMIN));
-        } else {
-            user.setRoles(Collections.singleton(Role.USER));
-        }
-
+        user.setRoles(Collections.singleton(Role.USER));
+        user.setActive(true);
         userRepository.save(user);
     }
 
@@ -84,4 +79,5 @@ public class UserService {
         }
 
     }
+
 }

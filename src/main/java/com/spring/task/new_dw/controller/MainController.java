@@ -9,11 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @GetMapping
-    public String greeting() {
-        return "index";
-    }
-
-    @GetMapping("/main")
     public String main() { return "main"; }
 
 }
